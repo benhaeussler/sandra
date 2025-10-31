@@ -22,7 +22,6 @@
             overflow-x: hidden;
         }
 
-        /* Schnee-Animation */
         .snowflake {
             position: fixed;
             top: -10px;
@@ -80,14 +79,14 @@
         }
         
         @media (max-width: 480px) {
-        .container {
-        padding: 10px;
-        }
-        
-        h1 {
-        font-size: 2rem;
-        margin: 20px 0;
-        }
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin: 20px 0;
+            }
             
             .header-image {
                 max-height: 180px;
@@ -195,7 +194,6 @@
             color: #777;
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -254,10 +252,9 @@
         }
 
         .modal h2 {
-            color: #FF8A65;
+            color: #8B4513;
             font-size: 2rem;
             margin-bottom: 20px;
-            border-bottom: 2px solid #FFB74D;
             padding-bottom: 10px;
         }
 
@@ -266,29 +263,69 @@
             font-size: 1.1rem;
             line-height: 1.6;
         }
+
+        .modal-body p {
+            margin-bottom: 15px;
+        }
         
         .modal-image {
             width: 100%;
-            max-width: 400px;
-            height: 200px;
+            max-width: 500px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 10px;
-            margin: 15px auto;
+            border-radius: 15px;
+            margin: 0 auto 25px;
             display: block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         
         .poem {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 20px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #fff8f0, #fff0e6);
+            padding: 25px;
+            border-radius: 12px;
             font-style: italic;
-            margin: 15px 0;
+            margin: 25px 0;
             text-align: center;
-            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 8px rgba(139,69,19,0.1);
+            line-height: 1.8;
         }
 
-        /* Responsive Design */
+        .tip-box {
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .tip-box strong {
+            color: #8B4513;
+            font-size: 1.15rem;
+        }
+
+        .link-box {
+            text-align: center;
+            margin: 25px 0 10px;
+        }
+
+        .link-box a {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 8px rgba(139,69,19,0.3);
+        }
+
+        .link-box a:hover {
+            background: linear-gradient(135deg, #A0522D, #8B4513);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(139,69,19,0.4);
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -315,6 +352,10 @@
             .modal-content {
                 margin: 10% auto;
                 padding: 20px;
+            }
+
+            .modal-image {
+                height: 200px;
             }
         }
 
@@ -344,6 +385,10 @@
                 width: 95%;
                 padding: 15px;
             }
+
+            .modal-image {
+                height: 180px;
+            }
         }
     </style>
 </head>
@@ -355,7 +400,6 @@
         
         <div class="calendar-container">
             <div class="calendar-grid" id="calendar">
-                <!-- Die 24 Türchen werden hier durch JavaScript generiert -->
             </div>
         </div>
         
@@ -367,33 +411,28 @@
         </div>
     </div>
 
-    <!-- Modal Template -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="modal-title">Türchen</h2>
             <div class="modal-body" id="modal-body">
-                <!-- Inhalt wird hier eingefügt -->
             </div>
         </div>
     </div>
 
     <script>
-        // Aktuelle Datum für Türchen-Freischaltung
         const today = new Date();
         const currentDay = today.getDate();
-        const currentMonth = today.getMonth() + 1; // September = 9
+        const currentMonth = today.getMonth() + 1;
         
-        // Inhalt für jeden Tag (hier noch leer - kann später gefüllt werden)
         const doorContent = {
             1: {
                 title: "1. Dezember",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 1 -->
-                    <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Weihnachtlicher Winterwald" class="modal-image">
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=869" alt="Weihnachtlicher Start" class="modal-image">
                     
                     <div class="poem">
-                        <strong>🎄 Willkommen im Dezember! 🎄</strong><br><br>
+                        <strong>🎄 Willkommen im Advent! 🎄</strong><br><br>
                         "Der erste Schnee, so weiß und rein,<br>
                         lädt uns zur Weihnachtszeit hinein.<br>
                         Mit Kerzen, Plätzchen und viel Freude,<br>
@@ -404,17 +443,18 @@
                     
                     <p>In den nächsten 24 Tagen erwarten euch täglich neue Überraschungen: pädagogische Ideen für den flexiblen Unterricht, kreative Bastelanregungen für unterwegs, weihnachtliche Geschichten und vieles mehr.</p>
                     
-                    <p>Jedes Türchen öffnet sich pünktlich am entsprechenden Tag - so wie bei einem echten Adventskalender! 🏠</p>
-                    <!-- ENDE INHALT TÜRCHEN 1 -->
+                    <div class="tip-box">
+                        <strong>💡 Tipp für heute:</strong><br>
+                        Startet gemeinsam in die Adventszeit! Bastelt einen kleinen Countdown-Kalender oder malt ein Adventsbild. So könnt ihr die Vorfreude auf Weihnachten täglich spüren.
+                    </div>
+                    
+                    <p style="font-style: italic; text-align: center; margin-top: 20px;">Jedes Türchen öffnet sich pünktlich am entsprechenden Tag - so wie bei einem echten Adventskalender! 🏠</p>
                 `
             },
             2: {
-                title: "2. Dezember", 
+                title: "2. Dezember - Schneeflocken basteln", 
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 2 -->
-                    <img src="https://plus.unsplash.com/premium_photo-1726880417784-b9ec5f805af9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Weihnachtliche Dekoration" class="modal-image">
-                    
-                    <h3 style="color: #FF8A65; text-align: center;">🎅 Weihnachtliche Unterrichtsidee 🎅</h3>
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=869" alt="Weihnachtliche Dekoration" class="modal-image">
                     
                     <div class="poem">
                         "Im Klassenzimmer leuchten Sterne,<br>
@@ -427,199 +467,415 @@
                     
                     <p>Nehmt runde Kaffeefilter, faltet sie mehrmals und schneidet kleine Muster hinein. Wenn ihr sie wieder auffaltet, entstehen wunderschöne, einzigartige Schneeflocken!</p>
                     
-                    <p><strong>Pädagogischer Tipp:</strong> Verbindet das Basteln mit Mathematik - zählt die Symmetrieachsen oder erklärt geometrische Formen. So wird aus der Bastelstunde auch gleich eine Lerneinheit! Diese Aktivität funktioniert auch wunderbar im mobilen Klassenzimmer oder Wohnwagen. 📚</p>
+                    <div class="tip-box">
+                        <strong>💡 Pädagogischer Tipp:</strong><br>
+                        Verbindet das Basteln mit Mathematik - zählt die Symmetrieachsen oder erklärt geometrische Formen. So wird aus der Bastelstunde auch gleich eine Lerneinheit! Diese Aktivität funktioniert auch wunderbar im mobilen Klassenzimmer oder Wohnwagen.
+                    </div>
                     
                     <p style="font-style: italic; color: #666; text-align: center;">"Jede Schneeflocke ist einzigartig - genau wie jedes Kind auf Reisen, das ihr unterrichtet!"</p>
-                    <!-- ENDE INHALT TÜRCHEN 2 -->
                 `
             },
             3: {
-                title: "3. Dezember",
+                title: "3. Dezember - Adventsgeschichten",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 3 -->
-                    <p>Hier kommt der Inhalt für den 3. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 3 -->
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=869" alt="Adventsgeschichten" class="modal-image">
+                    
+                    <div class="poem">
+                        "Geschichten leuchten hell und klar,<br>
+                        erzählen uns von nah und fern.<br>
+                        Sie bringen Wärme, Licht und Glück,<br>
+                        in dieser Zeit, Stck für Stück."
+                    </div>
+                    
+                    <p>Heute dreht sich alles um weihnachtliche Geschichten! Lest gemeinsam eine schöne Adventsgeschichte oder erzählt euch gegenseitig eure Lieblingserinnerungen an vergangene Weihnachtsfeste.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Lasst die Kinder ihre eigene kleine Adventsgeschichte erfinden und aufschreiben. Vielleicht mit den Figuren aus eurem Unterricht oder von ihren Reisen? So wird die Schreibkompetenz spielerisch gefördert.
+                    </div>
+                    
+                    <p style="font-style: italic; color: #666; text-align: center;">"Geschichten verbinden uns - egal wo wir sind!"</p>
                 `
             },
             4: {
-                title: "4. Dezember",
+                title: "4. Dezember - Weihnachtsquiz",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 4 -->
-                    <p>Hier kommt der Inhalt für den 4. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 4 -->
+                    <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=1470&auto=format&fit=crop" alt="Weihnachtliches Quiz" class="modal-image">
+                    
+                    <p>Heute erwartet euch ein kleines Weihnachtsquiz, bei dem ihr gemeinsam Fragen beantwortet. So lernt ihr spielerisch Neues über Weihnachten und entdeckt spannende Fakten.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Im Anschluss erstellt ihr euer eigenes Quiz – ganz analog mit Zetteln oder digital z. B. in einer Quiz-App. Recherchiert neue Fragen und erstellt die dazugehörigen Antworten.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://learningapps.org/8625032" target="_blank">🎯 Zum Weihnachtsquiz →</a>
+                    </div>
                 `
             },
             5: {
-                title: "5. Dezember",
+                title: "5. Dezember - Weihnachtsheft",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 5 -->
-                    <p>Hier kommt der Inhalt für den 5. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 5 -->
+                    <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=1470&auto=format&fit=crop" alt="Rechnen und Rätsel" class="modal-image">
+                    
+                    <p>Taucht ein in die Welt der Rechenspiele und Rätsel! Ob Zahlenlabyrinthe, kleine Rechenaufgaben oder knifflige Rätsel. Dabei übt ihr spielerisch Rechnen, kombiniert Knobeln mit Denken und habt vor allem jede Menge Spaß!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Lasst die Kinder eigene Rätsel entwerfen – kleine Rechenaufgaben oder Zahlenbilder für die Mitschüler. So wird nicht nur gerechnet, sondern auch kreativ gedacht und erklärt.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://coollama.de/wp-content/uploads/2021/11/WEIHNACHTSFERIENHEFT_2021__kostenlos_COOL.pdf" target="_blank">📥 Download Weihnachtsheft (Klassen 1-4) →</a>
+                    </div>
                 `
             },
             6: {
                 title: "6. Dezember - Nikolaus",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 6 -->
-                    <p>Hier kommt der Inhalt für den 6. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 6 -->
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=869" alt="Nikolaus" class="modal-image">
+                    
+                    <div class="poem">
+                        <strong>🎅 Froher Nikolaustag! 🎅</strong><br><br>
+                        "Der Nikolaus kommt heut ins Haus,<br>
+                        bringt Nüsse, Äpfel, Mandelkern.<br>
+                        Er lächelt freundlich, spricht ein Wort,<br>
+                        und alle Kinder haben ihn so gern."
+                    </div>
+                    
+                    <p>Heute ist Nikolaustag! Eine wunderbare Gelegenheit, um über Traditionen und Bräuche zu sprechen. Vielleicht möchtet ihr gemeinsam einen Nikolausstiefel basteln oder Geschichten über den heiligen Nikolaus lesen?</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Sprecht darüber, wie der Nikolaus in verschiedenen Ländern gefeiert wird. So verbindet ihr Sprachförderung mit interkulturellem Lernen - perfekt für Kinder, die viel unterwegs sind!
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 20px; font-weight: bold; color: #8B4513;">
+                        Einen schönen Nikolaustag wünschen wir euch! ⭐
+                    </p>
                 `
             },
             7: {
-                title: "7. Dezember",
+                title: "7. Dezember - Sterne aus Brotzeittüten",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 7 -->
-                    <p>Hier kommt der Inhalt für den 7. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 7 -->
+                    <img src="https://images.unsplash.com/photo-1544963675-37916b54212e?q=80&w=1374&auto=format&fit=crop" alt="Weihnachtssterne basteln" class="modal-image">
+                    
+                    <p>Nehmt weiße Brotzeittüten, klebt sie aneinander und schneidet kleine Muster hinein. So entstehen im Handumdrehen wunderschöne, einzigartige Sterne!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Basteln mit Mathematik - zählt die Symmetrieachsen oder erklärt geometrische Formen. So wird aus der Bastelstunde auch gleich eine Lerneinheit!
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://bellendo.de/lifehacks/sterne-aus-butterbrottueten/" target="_blank">⭐ Zur Bastelanleitung →</a>
+                    </div>
                 `
             },
             8: {
-                title: "8. Dezember",
+                title: "8. Dezember - Weihnachtskarten gestalten",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 8 -->
-                    <p>Hier kommt der Inhalt für den 8. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 8 -->
+                    <img src="https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=1470&auto=format&fit=crop" alt="Weihnachtskarten gestalten" class="modal-image">
+                    
+                    <p>Gestaltet eure eigenen Weihnachtskarten mithilfe von Sketchnotes! Nutzt einfache Symbole wie Sterne, Kerzen, Tannenbäume oder kleine Figuren. Schreibt einen Weihnachtsgruß z. B. "Frohes Fest!" und fügt dekorative Rahmen oder Pfeile hinzu. Jede Karte wird so zu einem persönlichen Kunstwerk!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Überlegt kleine Gedichtzeilen, die man in die Karten einbauen kann. So wird nicht nur kreativ gestaltet, sondern gleichzeitig auch Sprache geschult.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://sketchnotegame.wordpress.com/download-kartenspiel/" target="_blank">🎨 Zum Stationentraining Handlettering →</a>
+                    </div>
                 `
             },
             9: {
-                title: "9. Dezember",
+                title: "9. Dezember - Weihnachtliche Lektüre",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 9 -->
-                    <p>Hier kommt der Inhalt für den 9. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 9 -->
+                    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1498&auto=format&fit=crop" alt="Weihnachtliches Lesen" class="modal-image">
+                    
+                    <p>Wählt gemeinsam Bücher oder Geschichten rund um das Thema Weihnachten aus. Ihr könnt das Buch gemeinsam lesen oder jeder liest ein eigenes Buch und stellt es anschließend den anderen vor z. B. mit einem Booktube.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Sprecht anschließend über die Inhalte – wer war eure Lieblingsfigur, was würdet ihr anders machen oder welche Gefühle weckt die Geschichte? So fördert ihr nicht nur das Leseverständnis, sondern auch die Ausdrucksfähigkeit.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.lesen.bayern.de/suchergebnisse/?tx_kesearch_pi1%5Bsword%5D=Weihnachten" target="_blank">📚 Zu den Buchideen →</a>
+                    </div>
                 `
             },
             10: {
-                title: "10. Dezember",
+                title: "10. Dezember - Adventsgruselgeschichte",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 10 -->
-                    <p>Hier kommt der Inhalt für den 10. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 10 -->
+                    <img src="https://images.unsplash.com/photo-1482784160316-6eb046863ece?q=80&w=1470&auto=format&fit=crop" alt="Gruselgeschichte schreiben" class="modal-image">
+                    
+                    <p>Heute wird es gruselig-weihnachtlich! Nutzt die Sequenz zur Gruselgeschichte und erstellt eine eigene weihnachtliche Gruselgeschichte. Lasst euch eine Idee einfallen und schreibt die Geschichte auf. Anschließend könnt ihr eure Geschichte vertonen – mit Stimmen, Geräuschen oder kleinen Effekten. So entsteht eine ganz persönliche, spannende Hörgeschichte!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Schreiben mit Sprech- und Hörtraining: Lasst die Kinder ihre Texte vorlesen, auf Tempo, Betonung und Stimmung achten und kreativ Geräusche einbauen. So wird aus der Geschichte ein interaktives, multimediales Erlebnis.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://diefraumitdemdromedar.de/gruselgeschichten-hoerspiele-eine-sequenz-zum-erzaehlen/" target="_blank">👻 Zur Sequenz →</a>
+                    </div>
                 `
             },
             11: {
-                title: "11. Dezember",
+                title: "11. Dezember - Weihnachtliche QR-Codes",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 11 -->
-                    <p>Hier kommt der Inhalt für den 11. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 11 -->
+                    <img src="https://images.unsplash.com/photo-1734035162274-51cdd996181f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=871" alt="QR-Codes" class="modal-image">
+                    
+                    <p>Lasst die Kinder oder Jugendlichen ihre Lieblingsweihnachtsgeschichte auswählen und diese vorlesen. Danach wird ein QR-Code erstellt, der zu dieser Geschichte führt. Lasst die Kinder ein Bild zur Geschichte malen und dann den QR-Code aufkleben. So können alle die Lieblingsgeschichten der anderen entdecken, einfach indem sie den QR-Code scannen! Man kann daraus auch eine kleine Weihnachtsausstellung machen!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Erstellen der QR-Codes mit Medienkompetenz: Sprecht über Urheberrecht, sicheres Teilen digitaler Inhalte und kreative Präsentation. So wird aus einer einfachen Lektüre eine interaktive Lernaktivität.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.qrcode-monkey.com/" target="_blank">📱 QR-Codes erstellen →</a>
+                    </div>
                 `
             },
             12: {
-                title: "12. Dezember",
+                title: "12. Dezember - Weihnachtsbräuche",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 12 -->
-                    <p>Hier kommt der Inhalt für den 12. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 12 -->
+                    <img src="https://images.unsplash.com/photo-1672352349100-4d413121f5cd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=840" alt="Weihnachten in Europa" class="modal-image">
+                    
+                    <p>Wie feiert man Weihnachten in anderen Ländern Europas? Viel Spaß beim Rätseln!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Quiz mit Sachunterricht oder Geografie – recherchiert gemeinsam Weihnachtsbräuche aus verschiedenen Ländern oder entdeckt Wissenswertes rund um Weihnachten. So wird Wissen spielerisch aufgefrischt und erweitert.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.lehrer-online.de/unterricht/grundschule/sachunterricht/jahreszeiten/unterrichtseinheit/ue/unterrichtsmaterial-weihnachten-in-europa/" target="_blank">🌍 Zu Weihnachten in Europa →</a>
+                    </div>
                 `
             },
             13: {
-                title: "13. Dezember",
+                title: "13. Dezember - Lieblings-Plätzchen-Rezept",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 13 -->
-                    <p>Hier kommt der Inhalt für den 13. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 13 -->
+                    <img src="https://images.unsplash.com/photo-1639590229762-3c9a8c98ca31?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870" alt="Weihnachtsplätzchen" class="modal-image">
+                    
+                    <p>Sammelt gemeinsam eure Lieblingsrezepte für Weihnachten – Plätzchen, Lebkuchen, Punsch oder besondere Familiengerichte. Schreibt sie auf, malt kleine Illustrationen dazu und gestaltet daraus ein eigenes Rezeptbuch. So entsteht ein kreatives Andenken, das ihr jedes Jahr nutzen könnt!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Sammeln mit Deutsch und Mathematik: Lasst die Kinder die Rezepte klar aufschreiben, Mengenangaben berechnen oder Zutaten in andere Portionen umrechnen. So wird aus dem Backspaß eine kleine Lerneinheit!
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://zimtkeksundapfeltarte.com/rezept/meine-25-besten-rezepte-fuer-weihnachtsplaetzchen/" target="_blank">🍪 Zu den Plätzchenrezepten →</a>
+                    </div>
                 `
             },
             14: {
-                title: "14. Dezember",
+                title: "14. Dezember - Pop-up Weihnachtskarte",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 14 -->
-                    <p>Hier kommt der Inhalt für den 14. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 14 -->
+                    <img src="https://images.unsplash.com/photo-1640537703373-2397da3d17eb?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870" alt="Pop-up Karte basteln" class="modal-image">
+                    
+                    <p>Gestaltet eure eigenen Pop-up-Weihnachtskarten! Schneidet Figuren wie Tannenbäume, Sterne oder Weihnachtsmänner aus, faltet sie clever und klebt sie so in eure Karte, dass sie beim Aufklappen hervorstehen. So entsteht ein Überraschungseffekt und jede Karte wird zu einem kleinen Kunstwerk.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Basteln mit Mathematik und räumlichem Denken: Überlegt gemeinsam, wie die Pop-up-Elemente platziert werden müssen, damit sie sich beim Öffnen bewegen.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.lernbiene.de/blog/basteln-mit-der-lernbiene-pop-up-weihnachtskarten/" target="_blank">🎄 Zur Bastelvorlage →</a>
+                    </div>
                 `
             },
             15: {
-                title: "15. Dezember",
+                title: "15. Dezember - Weihnachtliches Hörbuch",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 15 -->
-                    <p>Hier kommt der Inhalt für den 15. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 15 -->
+                    <img src="https://images.unsplash.com/photo-1631090096890-3b664b959218?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=870" alt="Hörbuch hören" class="modal-image">
+                    
+                    <p>Setzt euch gemütlich zusammen und lauscht dem Hörbuch. Während die Geschichte läuft, könnt ihr dazu malen, was ihr hört – vielleicht den Weihnachtsmann, einen verschneiten Wald oder die Hauptfiguren der Geschichte. So entstehen ganz persönliche Bilderbücher zu den Hörgeschichten!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Zuhören mit Sprachförderung – lasst die Kinder am Ende in eigenen Worten nacherzählen, was passiert ist, oder überlegt gemeinsam eine alternative Fortsetzung. So werden Hörverstehen, Fantasie und Ausdrucksfähigkeit spielerisch trainiert.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.gratis-hoerspiele.de/sammlung/adventskalender-streaming/" target="_blank">🎧 Zu den Hörbüchern →</a>
+                    </div>
                 `
             },
             16: {
-                title: "16. Dezember",
+                title: "16. Dezember - Weihnachts-ABC",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 16 -->
-                    <p>Hier kommt der Inhalt für den 16. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 16 -->
+                    <img src="https://images.unsplash.com/photo-1665350314454-76afcb9c7b85?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=774" alt="ABC schreiben" class="modal-image">
+                    
+                    <p>Heute könnt ihr ein weihnachtliches ABC in verschiedenen Sprachen erstellen! Überlegt euch zu jedem Buchstaben ein Wort, das zu Weihnachten passt – z. B. „A wie Advent" (Deutsch), „B wie Baum" (Deutsch) oder „S wie Santa" (Englisch) – und ergänzt die Begriffe in weiteren Sprachen, die ihr kennt. Danach könnt ihr die Wörter illustrieren oder kleine Erklärungen dazu schreiben. So entsteht ein buntes, kreatives und internationales Weihnachts-ABC!</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das ABC mit Sprache und interkulturellem Lernen: Lasst die Kinder die Wörter richtig schreiben, aussprechen und kurze Sätze oder Reime dazu bilden. So werden Sprachkompetenz und Kreativität gleichzeitig gefördert.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://taskcards.s3.hidrive.strato.com/attachments/7040309a-b962-4feb-8026-c970cf9bb595?response-content-disposition=filename%3DABC-Liste-Vorlage.pdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AHS49RUS6XLXF0S0CNIF%2F20251030%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20251030T195328Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=0af580385a4f411dc3d9c011278e624dd4f6b5eec38201d224b0e5674f60796a" target="_blank">📝 Zur ABC-Vorlage →</a>
+                    </div>
                 `
             },
             17: {
-                title: "17. Dezember",
+                title: "17. Dezember - Viele Bastelideen",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 17 -->
-                    <p>Hier kommt der Inhalt für den 17. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 17 -->
+                    <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=1470&auto=format&fit=crop" alt="Basteln für Weihnachten" class="modal-image">
+                    
+                    <p>Heute dreht sich alles ums Schenken und Überraschungen bereiten! Bastelt kleine Geschenke, Karten oder Aufmerksamkeiten und überlegt, wem ihr damit eine Freude machen könnt. Ob selbstgemalte Bilder, gebastelte Anhänger oder kleine Leckereien – die persönliche Note macht das Geschenk besonders.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Basteln mit Empathie und Sprache: Lasst die Kinder überlegen, warum ihr Geschenk Freude bereiten könnte, oder einen kleinen Brief/die Botschaft dazu schreiben. So wird Kreativität mit sozialem Lernen verbunden!
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.eltern.de/familie-urlaub/selbermachen/weihnachtsbasteln-mit-kindern--28-originelle-ideen-13875300.html" target="_blank">🎁 Zu den Bastelideen →</a>
+                    </div>
                 `
             },
             18: {
-                title: "18. Dezember",
+                title: "18. Dezember - Zeit für Teambuilding",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 18 -->
-                    <p>Hier kommt der Inhalt für den 18. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 18 -->
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1632&auto=format&fit=crop" alt="Teamwork" class="modal-image">
+                    
+                    <p>Heute steht Teamwork im Advent auf dem Programm – mit der Marshmallow-Challenge! Jedes Team bekommt Spaghetti, Klebeband, Schnur und einen Marshmallow. Die Aufgabe: Baut gemeinsam den höchsten freistehenden Turm, auf dessen Spitze der Marshmallow passt.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet das Spiel mit Problemlösen, Kommunikation und Kreativität: Beobachtet, wie die Teams planen, Ideen ausprobieren und gemeinsam Entscheidungen treffen. Danach könnt ihr über die Strategien sprechen und reflektieren, was gut funktioniert hat.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.workshop-spiele.de/marhsmallow-challenge/" target="_blank">🏗️ Zur Marshmallow-Challenge →</a>
+                    </div>
                 `
             },
             19: {
-                title: "19. Dezember",
+                title: "19. Dezember - Suchbilder selbst erstellen",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 19 -->
-                    <p>Hier kommt der Inhalt für den 19. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 19 -->
+                    <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=1470&auto=format&fit=crop" alt="Suchbilder" class="modal-image">
+                    
+                    <p>Gestaltet euer eigenes weihnachtliches Suchbild und versteckt darin kleine Details wie Sterne, Geschenke oder Zuckerstangen. Anschließend können die Kinder oder Jugendlichen die versteckten Objekte suchen – und so spielerisch Aufmerksamkeit, Konzentration oder Sprachfertigkeit trainieren.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Lasst kurze Geschichten zu den gefundenen Dingen erzählen oder macht daraus einen kleinen Wettbewerb, wer in 1 Minute die meisten Gegenstände findet.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://kinder.jff.de/project/ein-suchbild-selbst-erstellen/" target="_blank">🔍 Zur Anleitung →</a>
+                    </div>
                 `
             },
             20: {
-                title: "20. Dezember",
+                title: "20. Dezember - Quiz",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 20 -->
-                    <p>Hier kommt der Inhalt für den 20. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 20 -->
+                    <img src="https://images.unsplash.com/photo-1733667475187-e95a6a8e9593?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1032" alt="Weihnachtsquiz" class="modal-image">
+                    
+                    <p>Heute gibt es ein weihnachtliches Quiz, das ihr selbst lösen dürft! Beantwortet Fragen zu Weihnachtsbräuchen, Liedern oder Geschichten – so lernt ihr spielerisch Neues über Weihnachten.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Anschließend könnt ihr euer eigenes Quiz erstellen – analog mit Zetteln oder digital in einer App. Überlegt Fragen, Antworten und vielleicht sogar kleine Extras wie Bilder oder Audio. So wiederholt ihr nicht nur das Gelernte, sondern übt auch Kreativität und logisches Denken.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://www.geo.de/geolino/quiz-ecke/13178-quiz-quiz-weihnachten" target="_blank">❓ Zum Weihnachtsquiz →</a>
+                    </div>
                 `
             },
             21: {
-                title: "21. Dezember",
+                title: "21. Dezember - Bilderrätsel",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 21 -->
-                    <p>Hier kommt der Inhalt für den 21. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 21 -->
+                    <img src="https://images.unsplash.com/photo-1544795549-4378c43869c0?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=871" alt="Bilderrätsel" class="modal-image">
+                    
+                    <p>Heute könnt ihr ein Bilderrätsel im Dalli-Klick-Stil erstellen! Nutzt PowerPoint, um ein Bild Stück für Stück zu enthüllen. Die Kinder oder Jugendlichen müssen erraten, was sich hinter den aufgedeckten Teilen verbirgt.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Die Kinder können auch selbst ein Dalli-Klick-Bild erstellen.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://lehrerfortbildung-bw.de/u_mks/kunst/sueb/nm/bilder/projekte/bilderraetsel/" target="_blank">🖼️ Zur Anleitung →</a>
+                    </div>
                 `
             },
             22: {
-                title: "22. Dezember",
+                title: "22. Dezember - Weihnachtsyoga",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 22 -->
-                    <p>Hier kommt der Inhalt für den 22. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 22 -->
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1420&auto=format&fit=crop" alt="Yoga" class="modal-image">
+                    
+                    <p>Heute probieren wir Weihnachtsyoga aus! Bewegt euch gemeinsam zu kleinen Yoga-Übungen, die von weihnachtlichen Motiven inspiriert sind – z. B. der Tannenbaum, der Stern oder das Schneeflöckchen. So kommen Körper, Geist und Weihnachtsstimmung in Einklang.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet die Übungen mit Atem- und Entspannungstechniken: Lasst die Kinder beim Einatmen an Licht und Freude denken und beim Ausatmen Spannungen loslassen. So wird Bewegung zu einer kleinen Pause für Körper und Seele.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://taskcards.s3.hidrive.strato.com/attachments/444f965a-93be-40a0-ab0b-6953f36d7ba9?response-content-disposition=filename%3DWeihnachts-Yoga.pdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AHS49RUS6XLXF0S0CNIF%2F20251029%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20251029T183156Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2e8dd193537ea1baaabc33901e6a5cdedb3d4be61329a7c13d92f8fd0b28ce5e" target="_blank">🧘 Zum Weihnachtsyoga →</a>
+                    </div>
                 `
             },
             23: {
-                title: "23. Dezember",
+                title: "23. Dezember - Weihnachtliche Stille",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 23 -->
-                    <p>Hier kommt der Inhalt für den 23. Dezember hinein.</p>
-                    <!-- ENDE INHALT TÜRCHEN 23 -->
+                    <img src="https://images.unsplash.com/photo-1481833761820-0509d3217039?q=80&w=1470&auto=format&fit=crop" alt="Stille genießen" class="modal-image">
+                    
+                    <p>Nehmt euch heute einen Moment Zeit für weihnachtliche Stille. Legt euch gemütlich hin oder setzt euch an einen ruhigen Ort, schließt die Augen und hört bewusst auf die Geräusche um euch herum – vielleicht das Knistern von Kerzen, leise Musik oder einfach die Stille des Raums.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Verbindet die Stille mit Achtsamkeit: Lasst die Kinder oder Jugendlichen danach in wenigen Worten oder Bildern ausdrücken, was sie gefühlt oder gedacht haben. So wird aus einer kurzen Ruhepause eine kleine Übung in Selbstwahrnehmung und Entspannung. Um die Stille zu visualisieren, kann man ein Programm aktivieren. Dies ist auch für Stillarbeit oder Gruppenphasen im Unterricht jederzeit gut einsetzbar.
+                    </div>
                 `
             },
             24: {
-                title: "24. Dezember - Heiligabend",
+                title: "24. Dezember - So klingt Weihnachten",
                 content: `
-                    <!-- ANFANG INHALT TÜRCHEN 24 -->
-                    <p>Hier kommt der Inhalt für den 24. Dezember hinein.</p>
-                    <p>Frohe Weihnachten! 🎄</p>
-                    <!-- ENDE INHALT TÜRCHEN 24 -->
+                    <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=1469&auto=format&fit=crop" alt="Heiligabend" class="modal-image">
+                    
+                    <div class="poem">
+                        <strong>🎄 Frohe Weihnachten! 🎄</strong><br><br>
+                        "Die Türchen sind nun alle auf,<br>
+                        die Weihnachtszeit nimmt ihren Lauf.<br>
+                        Mit Freude, Licht und stillem Glück,<br>
+                        schauen wir dankbar zurück."
+                    </div>
+                    
+                    <p>Heute ist Heiligabend - der besondere Tag! Entdeckt zum Abschluss unseres Adventskalenders ein weihnachtliches Geräuscherätsel. Hört genau hin und erratet, welche Geräusche zu Weihnachten gehören.</p>
+                    
+                    <div class="tip-box">
+                        <strong>💡 Tipp:</strong><br>
+                        Erstellt danach euer eigenes Geräuscherätsel – nehmt Weihnachtsgeräusche auf und lasst andere raten. So schult ihr nicht nur das Gehör, sondern auch Kreativität und Medienkompetenz.
+                    </div>
+                    
+                    <div class="link-box">
+                        <a href="https://kinder.jff.de/project/geraeuscheraetsel/" target="_blank">🎵 Zum Geräuscherätsel →</a>
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #8B4513;">
+                        Vielen Dank, dass ihr dabei wart! Wir wünschen euch frohe Weihnachten und erholsame Feiertage! 🎅🎁✨
+                    </p>
                 `
             }
         };
 
-        // Kalender generieren
         function generateCalendar() {
             const calendar = document.getElementById('calendar');
-            
-            // Array mit Zahlen 1-24 für zufällige Anordnung
             const numbers = Array.from({length: 24}, (_, i) => i + 1);
             
-            // Zahlen mischen für authentischen Kalender-Look
             for (let i = numbers.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
@@ -629,8 +885,9 @@
                 const door = document.createElement('div');
                 door.className = 'door';
                 
-                // Prüfen ob Türchen schon geöffnet werden darf
-                const canOpen = (currentMonth === 9 && currentDay >= day) || currentMonth > 9;
+                // Oktober & November: alle Türchen offen (zum Testen)
+                // Ab Dezember: normaler Adventskalender (nur bis zum aktuellen Tag)
+                const canOpen = (currentMonth < 12) || (currentMonth === 12 && currentDay >= day);
                 
                 if (!canOpen) {
                     door.classList.add('locked');
@@ -642,14 +899,12 @@
                     if (canOpen) {
                         openModal(day);
                     }
-                    // Gesperrte Türchen sind einfach nicht klickbar
                 });
                 
                 calendar.appendChild(door);
             });
         }
 
-        // Modal öffnen
         function openModal(day) {
             const modal = document.getElementById('modal');
             const title = document.getElementById('modal-title');
@@ -660,19 +915,15 @@
             
             modal.style.display = 'block';
             document.body.classList.add('modal-open');
-            
-            // Modal zum Anfang scrollen
             modal.scrollTop = 0;
         }
 
-        // Modal schließen
         function closeModal() {
             const modal = document.getElementById('modal');
             modal.style.display = 'none';
             document.body.classList.remove('modal-open');
         }
 
-        // Schnee-Animation (optimiert)
         let activeSnowflakes = 0;
         const maxSnowflakes = 15;
         
@@ -690,23 +941,18 @@
             document.body.appendChild(snowflake);
             activeSnowflakes++;
             
-            // Schneeflocke nach Animation entfernen
             setTimeout(() => {
                 if (document.body.contains(snowflake)) {
                     document.body.removeChild(snowflake);
                     activeSnowflakes--;
                 }
-            }, (Math.random() * 3 + 2) * 1000); // Zwischen 2-5 Sekunden
+            }, (Math.random() * 3 + 2) * 1000);
         }
 
-        // Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
             generateCalendar();
-            
-            // Schnee starten (reduzierte Frequenz)
             setInterval(createSnowflake, 300);
             
-            // Modal Event Listeners
             document.querySelector('.close').addEventListener('click', closeModal);
             document.getElementById('modal').addEventListener('click', (e) => {
                 if (e.target.id === 'modal') {
@@ -714,7 +960,6 @@
                 }
             });
             
-            // ESC Taste zum Schließen
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     closeModal();
